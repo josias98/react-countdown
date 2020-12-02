@@ -1,0 +1,15 @@
+.navbar{
+    position : absolute;
+    top: 0;
+    left:0;
+    width:100%;
+    background-color:#1f2228;
+    color: #d1d1d1;
+    height: 60px;
+}
+
+.navbar h3{
+    font-family: 'Pacifico';
+    margin: 0;
+    line-height: 60px;
+}
