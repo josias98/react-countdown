@@ -1,0 +1,33 @@
+.SavedSet{
+    margin-left: 20px;
+    margin-right: 20px;
+    display: inline-block;
+    background-color: #1f2228;
+    color: #989ba5;
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 3px solid #191a1e;
+    height: 100px;
+    width: 100px;
+}
+
+.SavedSet:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.SavedSet h5{
+    text-transform: uppercase;
+    padding:0;
+    margin:0;
+    line-height: 100px;
+    font-weight: 500;
+    font-size: .85rem;
+}
+
+.saved-sets{
+    width: 100%;
+    padding-left:30px;
+    padding-right:30px;
+    margin-top:50px;
+}

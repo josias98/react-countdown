@@ -1,17 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './Navbar/Navbar';
 import Content from './Content/Content';
-
-function formatUser(firstname, lastname){
-    return `Hello Mr. ${firstname} ${lastname.toUpperCase()} !`;
-}
+import SaveCounter from './SaveCounter/SaveCounter';
 
 function App() {
-  const noeud = <p>Le couple, c'est nous deux. Don't forget it.</p>
   return (
     <div className="App">
       <Navbar/>
+      <SaveCounter />
       <Content/>
     </div>
   );

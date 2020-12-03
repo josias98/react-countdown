@@ -9,3 +9,30 @@
     font-size: calc(10px + 2vmin);
     color: white;
 }
+
+button:focus, input:focus{
+    border:none;
+    outline:none;
+}
+
+
+button{
+    background-color: #1f2228;
+    border: none;
+    text-transform: uppercase;
+    color: white;
+    padding: 15px 20px;
+    width: 100px;
+    margin-top: 30px;
+    transition:.3s;
+}
+button:hover{
+    background-color: #121417;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+button:focus{
+    border:none;
+    outline:none;
+}

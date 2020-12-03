@@ -1,0 +1,24 @@
+.time-input{
+    background-color: #282c34;
+    font-size: 80pt;
+    display: inline-block;
+    width: 160px;
+    color: white;
+    text-align: center;
+    border:none;
+}
+
+#minutes{
+    border-left: 2px solid #757575;
+    border-right: 2px solid #757575;
+}
+
+input.time-input:focus{
+    border: none;
+    background-color: #1f2228;
+    outline: none;
+}
+
+label{
+    display: block;
+}
