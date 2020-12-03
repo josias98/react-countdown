@@ -41,7 +41,9 @@ class TimeInputs extends Component{
                 minutes : prevState.value.minutes,
                 seconds : prevState.value.seconds,
             }
-        }));
+        }), ()=>{
+            this.props.onTimerChange(this.state.value);
+        });
     }
 
     getValidateInput(input){
@@ -68,7 +70,9 @@ class TimeInputs extends Component{
                 minutes : this.getValidateInput(event.target.value),
                 seconds : prevState.value.seconds,
             }
-        }));
+        }), ()=>{
+            this.props.onTimerChange(this.state.value);
+        });
     }
 
 
@@ -79,7 +83,9 @@ class TimeInputs extends Component{
                 minutes : prevState.value.minutes,
                 seconds : this.getValidateInput(event.target.value)
             }
-        }));
+        }), ()=>{
+            this.props.onTimerChange(this.state.value);
+        });
     }
 
     handleSubmit(event) {

@@ -28,6 +28,7 @@ class Content extends Component{
         this.handleCounterPause = this.handleCounterPause.bind(this);
         this.handleCounterResume = this.handleCounterResume.bind(this);
         this.handleCounterCancel = this.handleCounterCancel.bind(this);
+        this.handleTimerChange = this.handleTimerChange.bind(this);
     }
 
     GetMode(){
@@ -37,7 +38,7 @@ class Content extends Component{
             return <Counter timer={timer} onCounterPause = {this.handleCounterPause} onCounterResume = {this.handleCounterResume} onCounterCancel = {this.handleCounterCancel}/>;
         }
         else{
-            return <TimeInputs onTimeInputsChange = {this.handleCounterStart} actualTime = {actualTime}/>;
+            return <TimeInputs onTimeInputsChange = {this.handleCounterStart} actualTime = {actualTime} onTimerChange = {this.handleTimerChange}/>;
         }
     }
 
@@ -153,6 +154,10 @@ class Content extends Component{
             },
         }));
         clearInterval(this.timerCounter);
+    }
+
+    handleTimerChange(timer){
+        this.props.onTimerChange(timer);
     }
 
     render() {

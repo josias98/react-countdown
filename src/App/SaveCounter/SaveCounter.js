@@ -1,11 +1,24 @@
+import { Component } from 'react';
 import './SaveCounter.css';
 
-function SaveCounter() {
-  return (
-    <div className="SaveCounter">
-        <button className="save-btn" id="save-btn" title="Save Current Set">+</button>
-    </div>
-  );
-}
+class SaveCounter extends Component{
+    render(){
+        return (
+            <div className="SaveCounter">
+            <button className="save-btn" id="save-btn" title="Save Current Set" onClick={this.saveSet}>+</button>
+            </div>
+            );
+        }
 
-export default SaveCounter;
+        constructor(props) {
+            super(props);
+            this.state = {};
+            this.saveSet = this.saveSet.bind(this);
+        }
+
+        saveSet(){
+            this.props.onSave();
+        }
+    }
+
+    export default SaveCounter;
