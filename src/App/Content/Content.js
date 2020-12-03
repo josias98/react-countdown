@@ -41,21 +41,39 @@ class Content extends Component{
         }
     }
 
-    handleCounterStart(timer){
-        this.setState(prevState =>({
-            timer : {
-                hours : timer.hours,
-                minutes : timer.minutes,
-                seconds : timer.seconds,
-            },
-            countingMode : true,
-            timerIsPaused : false,
-            liveTimer : {
-                hours : timer.hours,
-                minutes : timer.minutes,
-                seconds : timer.seconds,
-            },
-        }));
+    handleCounterStart(timer,resume=false){
+        if(resume){
+            this.setState(prevState =>({
+                timer : {
+                    hours : prevState.timer.hours,
+                    minutes : prevState.timer.minutes,
+                    seconds : prevState.timer.seconds,
+                },
+                countingMode : true,
+                timerIsPaused : false,
+                liveTimer : {
+                    hours : timer.hours,
+                    minutes : timer.minutes,
+                    seconds : timer.seconds,
+                },
+            }));
+        }
+        else{
+            this.setState(prevState =>({
+                timer : {
+                    hours : timer.hours,
+                    minutes : timer.minutes,
+                    seconds : timer.seconds,
+                },
+                countingMode : true,
+                timerIsPaused : false,
+                liveTimer : {
+                    hours : timer.hours,
+                    minutes : timer.minutes,
+                    seconds : timer.seconds,
+                },
+            }));
+        }
 
         // let now = new Date().getTime();
         let targetMiliseconds = new Date().getTime() + timer.hours*3600*1000 + timer.minutes*60*1000 + timer.seconds*1000;
@@ -116,25 +134,10 @@ class Content extends Component{
 
 
     handleCounterResume(){
-        this.setState(prevState => ({
-            timer : {
-                hours : prevState.timer.hours,
-                minutes : prevState.timer.minutes,
-                seconds : prevState.timer.seconds,
-            },
-            countingMode : prevState.countingMode,
-            timerIsPaused : false,
-            liveTimer : {
-                hours : prevState.liveTimer.hours,
-                minutes : prevState.liveTimer.minutes,
-                seconds : prevState.liveTimer.seconds,
-            },
-        }));
+        this.handleCounterStart(this.state.liveTimer, true);
     }
 
-
     handleCounterCancel(){
-        // console.log(this.state);
         this.setState(prevState => ({
             timer : {
                 hours : prevState.timer.hours,

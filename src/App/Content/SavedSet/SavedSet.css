@@ -6,7 +6,7 @@
     color: #989ba5;
     border-radius: 50%;
     transition: 0.3s;
-    border: 3px solid #191a1e;
+    /* border: 3px solid #191a1e; */
     height: 100px;
     width: 100px;
 }

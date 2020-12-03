@@ -29,7 +29,7 @@ button{
 button:hover{
     background-color: #121417;
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 button:focus{
