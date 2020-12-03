@@ -6,7 +6,7 @@ const { default: SavedSet } = require("./SavedSet/SavedSet");
 
 class Content extends Component{
 
-
+    timerCounter;
     constructor(props) {
         super(props);
         this.state = {
@@ -56,6 +56,43 @@ class Content extends Component{
                 seconds : timer.seconds,
             },
         }));
+
+        // let now = new Date().getTime();
+        let targetMiliseconds = new Date().getTime() + timer.hours*3600*1000 + timer.minutes*60*1000 + timer.seconds*1000;
+
+        var that = this;
+
+
+        let x = setInterval(function(){
+        let tempNow = new Date().getTime();
+        let distance = targetMiliseconds - tempNow;
+            if(distance<=0){
+                distance = 0;
+                clearInterval(x);
+                console.info('Timer is over !');
+            }
+
+            let _hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let _minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let _seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            that.setState(prevState =>({
+                timer : {
+                    hours : timer.hours,
+                    minutes : timer.minutes,
+                    seconds : timer.seconds,
+                },
+                countingMode : true,
+                timerIsPaused : false,
+                liveTimer : {
+                    hours : _hours,
+                    minutes : _minutes,
+                    seconds : _seconds,
+                },
+            }));
+
+        },1000);
+        this.timerCounter = x;
     }
 
     handleCounterPause(){
@@ -74,12 +111,11 @@ class Content extends Component{
             },
         }));
 
-        console.log('PAUSED !');
+        clearInterval(this.timerCounter);
     }
 
 
     handleCounterResume(){
-        console.log('RESUMED !');
         this.setState(prevState => ({
             timer : {
                 hours : prevState.timer.hours,
@@ -113,7 +149,7 @@ class Content extends Component{
                 seconds : 0,
             },
         }));
-        console.log('CANCELLED !');
+        clearInterval(this.timerCounter);
     }
 
     render() {
@@ -127,7 +163,7 @@ class Content extends Component{
                 </div>
             </div>
             );
-        }
+    }
 }
 
 
