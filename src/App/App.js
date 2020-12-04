@@ -10,7 +10,7 @@ class App extends Component{
             <div className="App">
             <Navbar/>
             <SaveCounter onSave = {this.handleSave} />
-            <Content onTimerChange = {this.handleTimerChange}/>
+            <Content onTimerChange = {this.handleTimerChange} savedSets = {this.state.saveSets}/>
             </div>
             );
         }
@@ -33,22 +33,23 @@ class App extends Component{
 
 
     handleTimerChange(newTimer){
-        console.log(newTimer);
+        // console.log(newTimer);
         this.setState(prevState =>({
             saveSets : prevState.saveSets,
             currentSet : newTimer
         }), ()=>{
-            console.log(this.state);
+            // console.log(this.state);
         });
     }
 
     saveCurrentSet(){
         let savedSet = this.state.saveSets;
-        console.log(savedSet);
         const newSet = this.state.currentSet;
-        console.log(newSet);
         savedSet.push(newSet);
-        console.log(savedSet);
+        this.setState(prevState =>({
+            saveSets: savedSet,
+            currentSet : prevState.currentSet
+        }))
         localStorage.setItem('savedSets',JSON.stringify(savedSet));
     }
 

@@ -9,25 +9,65 @@
     /* border: 3px solid #191a1e; */
     height: 100px;
     width: 100px;
+    position:relative;
 }
 
 .SavedSet:hover{
     transform: scale(1.05);
     cursor: pointer;
+    border-radius : 5px;
 }
 
 .SavedSet h5{
-    text-transform: uppercase;
     padding:0;
     margin:0;
-    line-height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
     font-weight: 500;
     font-size: .8rem;
+    width:100px;
+    transition: 0.3s;
+}
+
+.SavedSet:hover h5{
+    top: 60%;
 }
 
 .saved-sets{
     width: 100%;
-    padding-left:30px;
-    padding-right:30px;
+    padding-left:0;
+    padding-right:0;
     margin-top:50px;
+}
+
+.inner-action{
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 33px;
+}
+
+.inner-action button{
+    margin-top: 0;
+    width: auto;
+    padding:5px 10px;
+    background-color:inherit;
+    border-radius: 5px;
+}
+
+
+.inner-action button:hover{
+    /* border-radius:10px; */
+    background-color:#0b0c0e;
+}
+
+.inner-action button img{
+    width:15px;
+}
+
+.SavedSet:hover .inner-action{
+    display: block;
 }

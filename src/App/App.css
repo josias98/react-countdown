@@ -20,7 +20,8 @@ button{
     background-color: #1f2228;
     border: none;
     text-transform: uppercase;
-    color: white;
+    color: #989ba5;
+    font-weight: 500;
     padding: 10px 20px;
     width: 100px;
     margin-top: 30px;

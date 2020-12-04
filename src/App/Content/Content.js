@@ -76,11 +76,9 @@ class Content extends Component{
             }));
         }
 
-        // let now = new Date().getTime();
         let targetMiliseconds = new Date().getTime() + timer.hours*3600*1000 + timer.minutes*60*1000 + timer.seconds*1000;
 
         var that = this;
-
 
         let x = setInterval(function(){
         let tempNow = new Date().getTime();
@@ -161,13 +159,17 @@ class Content extends Component{
     }
 
     render() {
+        let listItems = this.props.savedSets.map((set) =>
+            <SavedSet key={new Date().getTime()+ Math.random()} time = {set} />
+        );
         return (
             <div className="content">
                 { this.GetMode() }
                 <div className="saved-sets">
+                    {/* <SavedSet />
                     <SavedSet />
-                    <SavedSet />
-                    <SavedSet />
+                    <SavedSet /> */}
+                    {listItems}
                 </div>
             </div>
             );
