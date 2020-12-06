@@ -174,7 +174,6 @@ class Content extends Component{
     }
 
     handleSetDeletion(set){
-        console.log('Content component will tell App to delete this set');
         this.props.onSetDeletion(set);
     }
 }
