@@ -9,7 +9,7 @@ class App extends Component{
         return (
             <div className="App">
             <Navbar/>
-            <SaveCounter onSave = {this.handleSave} />
+            <SaveCounter onSave = {this.handleSave} disabled = {!this.state.allowSaving}/>
             <Content onTimerChange = {this.handleTimerChange} savedSets = {this.state.savedSets} onSetDeletion = {this.handleSetDeletion}/>
             </div>
             );
@@ -32,7 +32,8 @@ class App extends Component{
             this.state = {
                 savedSets : currentSet,
                 lastSetId: parseInt(lastSetId),
-                currentSet : {}
+                currentSet : {},
+                allowSaving : false,
             };
             this.saveCurrentSet = this.saveCurrentSet.bind(this);
             this.handleTimerChange = this.handleTimerChange.bind(this);
@@ -43,10 +44,19 @@ class App extends Component{
 
         handleTimerChange(newTimer){
             let timer = newTimer;
+            let allowSaving = this.state.allowSaving;
+            if(timer.hours === 0 && timer.minutes === 0 && timer.seconds === 0){
+                allowSaving = false;
+            }
+            else{
+                allowSaving = true;
+            }
             timer.id = this.state.lastSetId;
             this.setState(prevState =>({
                 savedSets : prevState.savedSets,
-                currentSet : timer
+                lastSetId : prevState.lastSetId,
+                currentSet : timer,
+                allowSaving : allowSaving
             }), ()=>{
                 // console.log(this.state);
             });
@@ -73,6 +83,7 @@ class App extends Component{
                 this.setState(prevState =>({
                     savedSets: savedSet,
                     currentSet : prevState.currentSet,
+                    allowSaving : prevState.allowSaving,
                     lastSetId: parseInt(lastSetId),
                 }));
                 localStorage.setItem('savedSets',JSON.stringify(savedSet));
@@ -92,6 +103,7 @@ class App extends Component{
             this.setState(prevState =>({
                 savedSets: newSet,
                 currentSet : prevState.currentSet,
+                allowSaving : prevState.allowSaving,
                 lastSetId: prevState.lastSetId,
             }));
             localStorage.setItem('savedSets',JSON.stringify(newSet));

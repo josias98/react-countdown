@@ -21,6 +21,15 @@
     padding:0;
 }
 
+.SaveCounter .save-btn:disabled{
+    opacity: .4;
+}
+.SaveCounter .save-btn:disabled:hover{
+    background-color: inherit;
+    transform: unset;
+    cursor: inherit;
+}
+
 .SaveCounter .save-btn:hover{
     background-color: #1f2228;
     cursor:pointer;

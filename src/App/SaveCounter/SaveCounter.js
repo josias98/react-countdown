@@ -5,7 +5,7 @@ class SaveCounter extends Component{
     render(){
         return (
             <div className="SaveCounter">
-            <button className="save-btn" id="save-btn" title="Save Current Set" onClick={this.saveSet}>+</button>
+            <button className="save-btn" id="save-btn" title="Save Current Set" onClick={this.saveSet} disabled={this.props.disabled}>+</button>
             </div>
             );
         }

@@ -30,6 +30,7 @@ class Content extends Component{
         this.handleCounterCancel = this.handleCounterCancel.bind(this);
         this.handleTimerChange = this.handleTimerChange.bind(this);
         this.handleSetDeletion = this.handleSetDeletion.bind(this);
+        this.handleApplySet = this.handleApplySet.bind(this);
     }
 
     GetMode(){
@@ -40,6 +41,18 @@ class Content extends Component{
         }
         else{
             return <TimeInputs onTimeInputsChange = {this.handleCounterStart} actualTime = {actualTime} onTimerChange = {this.handleTimerChange}/>;
+        }
+    }
+
+    displaySavedSets(){
+        if(!this.state.countingMode){
+            let listItems = this.props.savedSets.map((set) =>
+            <SavedSet key={set.id} time = {set} onDelete = {this.handleSetDeletion} onApply = {this.handleApplySet}/>
+        );
+        return (
+            <div className="saved-sets">
+                    {listItems}
+            </div>);
         }
     }
 
@@ -160,21 +173,34 @@ class Content extends Component{
     }
 
     render() {
-        let listItems = this.props.savedSets.map((set) =>
-            <SavedSet key={set.id} time = {set} onDelete = {this.handleSetDeletion}/>
-        );
         return (
             <div className="content">
                 { this.GetMode() }
-                <div className="saved-sets">
-                    {listItems}
-                </div>
+                { this.displaySavedSets() }
             </div>
             );
     }
 
     handleSetDeletion(set){
         this.props.onSetDeletion(set);
+    }
+
+    handleApplySet(set){
+        // console.log(set);
+        this.setState(prevState=>({
+                timer : {
+                    hours : set.hours,
+                    minutes : set.minutes,
+                    seconds : set.seconds
+                },
+                liveTimer : {
+                    hours : prevState.hours,
+                    minutes : prevState.minutes,
+                    seconds : prevState.seconds
+                },
+                countingMode: prevState.countingMode,
+                timerIsPaused : prevState.timerIsPaused,
+        }));
     }
 }
 

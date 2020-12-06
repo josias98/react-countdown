@@ -5,15 +5,15 @@ class TimeInputs extends Component{
     render() {
         return (
             <div className="settings">
-            <form onSubmit={this.handleSubmit}  autoComplete="off">
-            <h5>Set your time : </h5>
-            <input type="text" id="hours" className="time-input" placeholder="00"  value={this.state.value.hours}  onChange={this.handleHoursChange} />
-            <input type="text" id="minutes" className="time-input" placeholder="00"  value={this.state.value.minutes}  onChange={this.handleMinutesChange} />
-            <input type="text" id="seconds" className="time-input" placeholder="00"  value={this.state.value.seconds}  onChange={this.handleSecondsChange} />
-            <div className="action">
-            <button id="start" type="submit">Start</button>
-            </div>
-            </form>
+                <form onSubmit={this.handleSubmit}  autoComplete="off">
+                    <h5>Set your time : </h5>
+                    <input type="text" id="hours" className="time-input" placeholder="00"  value={this.state.value.hours}  onChange={this.handleHoursChange} />
+                    <input type="text" id="minutes" className="time-input" placeholder="00"  value={this.state.value.minutes}  onChange={this.handleMinutesChange} />
+                    <input type="text" id="seconds" className="time-input" placeholder="00"  value={this.state.value.seconds}  onChange={this.handleSecondsChange} />
+                    <div className="action">
+                        <button id="start" type="submit">Start</button>
+                    </div>
+                </form>
             </div>
             );
         }
@@ -91,6 +91,18 @@ class TimeInputs extends Component{
     handleSubmit(event) {
         this.props.onTimeInputsChange(this.state.value);
         event.preventDefault();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.actualTime != null && prevProps.actualTime !== this.props.actualTime) {
+            this.setState({
+                value : {
+                    hours : this.props.actualTime.hours,
+                    minutes : this.props.actualTime.minutes,
+                    seconds : this.props.actualTime.seconds
+                }
+            });
+        }
     }
 }
 
