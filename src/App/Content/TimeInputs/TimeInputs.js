@@ -5,7 +5,7 @@ class TimeInputs extends Component{
     render() {
         return (
             <div className="settings">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}  autoComplete="off">
             <h5>Set your time : </h5>
             <input type="text" id="hours" className="time-input" placeholder="00"  value={this.state.value.hours}  onChange={this.handleHoursChange} />
             <input type="text" id="minutes" className="time-input" placeholder="00"  value={this.state.value.minutes}  onChange={this.handleMinutesChange} />

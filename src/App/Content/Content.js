@@ -29,6 +29,7 @@ class Content extends Component{
         this.handleCounterResume = this.handleCounterResume.bind(this);
         this.handleCounterCancel = this.handleCounterCancel.bind(this);
         this.handleTimerChange = this.handleTimerChange.bind(this);
+        this.handleSetDeletion = this.handleSetDeletion.bind(this);
     }
 
     GetMode(){
@@ -160,19 +161,21 @@ class Content extends Component{
 
     render() {
         let listItems = this.props.savedSets.map((set) =>
-            <SavedSet key={new Date().getTime()+ Math.random()} time = {set} />
+            <SavedSet key={set.id} time = {set} onDelete = {this.handleSetDeletion}/>
         );
         return (
             <div className="content">
                 { this.GetMode() }
                 <div className="saved-sets">
-                    {/* <SavedSet />
-                    <SavedSet />
-                    <SavedSet /> */}
                     {listItems}
                 </div>
             </div>
             );
+    }
+
+    handleSetDeletion(set){
+        console.log('Content component will tell App to delete this set');
+        this.props.onSetDeletion(set);
     }
 }
 

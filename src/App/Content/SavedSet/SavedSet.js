@@ -6,7 +6,7 @@ class SavedSet extends Component{
         const savedDate = this.props.time;
         return (
             <div className="SavedSet">
-                <div className="inner-action" title="Delete this set"><button><img src="../../delete.png" alt="Delete"/></button></div>
+                <div className="inner-action" title="Delete this set"><button  onClick={this.deleteSet}><img src="../../delete.png" alt="Delete"/></button></div>
                 <h5>{savedDate.hours}h {savedDate.minutes}mins {savedDate.seconds}</h5>
             </div>
             );
@@ -17,7 +17,11 @@ class SavedSet extends Component{
         super(props);
         this.state = {};
 
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteSet = this.deleteSet.bind(this);
+    }
+
+    deleteSet(){
+        this.props.onDelete(this.props.time);
     }
 
     }
